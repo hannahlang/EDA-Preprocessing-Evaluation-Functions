@@ -1,3 +1,5 @@
+# OneHotEncoder()
+
 ## Parameters
 
 <b> col_list: </b> ***list or None, default = None***
