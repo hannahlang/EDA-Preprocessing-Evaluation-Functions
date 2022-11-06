@@ -1,6 +1,6 @@
-## EDA Functions
+# EDA Functions
 
-### plot_col_distributions ***(df, col_list = None, num_graph_cols = 4, figsize = (20, 20))***:
+## plot_col_distributions ***(df, col_list = None, num_graph_cols = 4, figsize = (20, 20))***:
 
 A function that takes the DataFrame of features and plots the distribution of the features in subplots. 
 If the column is an integer or object column it plots a bar graph. If the column is a float column, it plots a histogram.
@@ -25,7 +25,7 @@ Tuple of integer dimensions for the size of the figure.
 
 A subplot of the distributions of each column.
 
-### plot_col_vs_num_target ***(X, y, col_list = None, figsize = (20, 20), num_graph_cols = 4)***:
+## plot_col_vs_num_target ***(X, y, col_list = None, figsize = (20, 20), num_graph_cols = 4)***:
 
 A function that plots the relationship between each feature in the list and the target. 
 If the column is numerical, a scatterplot is plotted. If the column is an object, a side-by-side boxplot is plotted.
@@ -57,7 +57,7 @@ Tuple of integer dimensions for the size of the figure.
 A subplot of the distributions of each column.
 
 
-### plot_col_vs_cat_target ***(X, y, col_list = None, num_cols = 4, figsize = (20, 30))***:
+## plot_col_vs_cat_target ***(X, y, col_list = None, num_cols = 4, figsize = (20, 30))***:
 
 A function that plots the relationship between each feature in the list and the categorical target. 
 If the column is numerical, a side-by-side boxplot is plotted. If the column is an object, a barplot of value counts is plotted.
@@ -88,7 +88,7 @@ Tuple of integer dimensions for the size of the figure.
 
 A subplot of the distributions of each column against the target.
 
-### check_quasi_constant_features ***(df, col_list = None)***:
+## check_quasi_constant_features ***(df, col_list = None)***:
 
 This function takes the DataFrame of features and outputs a DataFrame that shows the category with the largest percentage of values for each feature.
     
@@ -103,7 +103,7 @@ Include a list of strings of column names:
 <b> Returns: </b> ***DataFrame***
 A DataFrame that shows the category with the largest percentage of values for each feature.
 
-### corr_feat_target ***(X, y, col_list = None, figsize = (14, 6))***:
+## corr_feat_target ***(X, y, col_list = None, figsize = (14, 6))***:
 
 This function plots a bar graph showing the correlation between each numerical feature and the target.
 
@@ -129,7 +129,7 @@ Tuple of integer dimensions for the size of the figure.
 
 A bargraph of the correlation of each column with the target.
 
-### correlation_matrix ***(df, col_list = None, figsize = (24, 20))***:
+## correlation_matrix ***(df, col_list = None, figsize = (24, 20))***:
 
 This function takes the DataFrame of features and outputs an lower triangle correlation heatmap.
     
@@ -147,7 +147,7 @@ Include a list of strings of column names:
 
 <b> Returns </b> Correlation Matrix
 
-### association_features_binary_target ***(X, y, col_list = None, alpha = 0.05)***:
+## association_features_binary_target ***(X, y, col_list = None, alpha = 0.05)***:
 
 A function that returns the names of the features that have a direct association with the target, and the corresponding p-values of the chi-squared tests and t-tests.
     
