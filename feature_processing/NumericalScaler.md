@@ -1,3 +1,5 @@
+# NumericalScaler()
+
 ## Parameters
 <b> method: </b> ***{'min_max_scaling', 'standardization'}, default = 'min_max_scaling'***
 
