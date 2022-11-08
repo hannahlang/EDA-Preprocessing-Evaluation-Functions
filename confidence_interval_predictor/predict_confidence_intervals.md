@@ -1,6 +1,6 @@
 # PredictConfidenceIntervals()
 
-A class that provides confidence intervals for the "predicted probabilities" of a classifier. It returns a DataFrame that contains for each sample, the predicted probability, lower and uppper confidence probabilities (and associated labels at these intervals).
+A class that provides confidence intervals for the "predicted probabilities" of a multi-class classifier. It returns a DataFrame that contains for each sample, the predicted probability, lower and uppper confidence probabilities (and associated labels at these intervals).
 
 ## Parameters
 
