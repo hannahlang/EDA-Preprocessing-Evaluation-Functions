@@ -128,11 +128,11 @@ class FilterFeatures():
         '''
         A function that calculates the distance between a point and a line.
         
-        lp1: A tuple of values that gives the coordinates of the first two-dimensional endpoint of a line.
+        lp1: An array (2,) of values that gives the coordinates of the first two-dimensional endpoint of a line.
         
-        lp2: A tuple of values that gives the coordinates of the first two-dimensional endpoint of a line.
+        lp2: An array (2,) of values that gives the coordinates of the second two-dimensional endpoint of a line.
         
-        p0: A tuple of values that gives the coordinates of the point that we want to calculate the distance of to the line.
+        p0: An array (2,) of values that gives the coordinates of the point that we want to calculate the distance of to the line.
         
         returns: The distance between the point and the line.
         '''
