@@ -92,7 +92,7 @@ def plot_col_vs_num_target(X, y, col_list = None, figsize = (20, 20), num_graph_
     plt.tight_layout()
 
     
-def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 30)):
+def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 30), rotation = 0):
     '''
     This function plots the relationship between each feature in the list and the categorical target. 
     If the column is numerical, a side-by-side boxplot is plotted. If the column is an object, a barplot of value counts is plotted.
@@ -123,24 +123,27 @@ def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 3
     
     #Plotting each column
     for i, col in enumerate(col_list):
-        if num_rows == 1:
+        if num_cols == 1:
+            axs_i = axs[i]
+        elif num_rows == 1:
             axs_i = axs[i%num_cols]
         else: 
             axs_i = axs[i//num_cols, i%num_cols]  
         if df[col].dtypes == int:
             if len(df[col].unique())<10:
-                df_rel = df.groupby(y_series.name)[col].value_counts(normalize=True).rename('percent').reset_index()
-                sns.barplot(data = df_rel, x = y_series.name, y = 'percent', hue = col,ax = axs_i, edgecolor = 'k')
+                df_rel = df.groupby(y.name)[col].value_counts(normalize=True).rename('percent').reset_index()
+                sns.barplot(data = df_rel, x = y.name, y = 'percent', hue = col,ax = axs_i, edgecolor = 'k')
             else:
-                sns.boxplot(data = df, x = y_series.name, y = col,ax = axs_i), 
+                sns.boxplot(data = df, x = y.name, y = col,ax = axs_i), 
                 axs_i.set_title('Distribution for {}'.format(col))
         elif df[col].dtypes == object:
-            df_rel = df.groupby(y_series.name)[col].value_counts(normalize=True).rename('percent').reset_index()
-            sns.barplot(data = df_rel, x = y_series.name, y = 'percent', hue = col, ax = axs_i, edgecolor = 'k')
+            df_rel = df.groupby(y.name)[col].value_counts(normalize=True).rename('percent').reset_index()
+            sns.barplot(data = df_rel, x = y.name, y = 'percent', hue = col, ax = axs_i, edgecolor = 'k')
         else:
-            sns.boxplot(data = df, x = y_series.name, y = col,ax = axs_i), 
+            sns.boxplot(data = df, x = y.name, y = col,ax = axs_i), 
             axs_i.set_title('Distribution for {}'.format(col))
         axs_i.set_title('Distribution for {}'.format(col))
+        axs_i.tick_params(rotation = rotation)
     plt.tight_layout()
 
     
