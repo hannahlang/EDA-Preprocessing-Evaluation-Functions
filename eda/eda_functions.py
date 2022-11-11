@@ -126,16 +126,23 @@ def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 3
         if num_rows == 1:
             axs_i = axs[i%num_cols]
         else: 
-            axs_i = axs[i//num_cols, i%num_cols]
+            axs_i = axs[i//num_cols, i%num_cols]  
         if df[col].dtypes == int:
-            df_rel = df.groupby(y.name)[col].value_counts(normalize=True).rename('percent').reset_index()
-            sns.barplot(data = df_rel, x = y.name, y = 'percent', hue = col,ax = axs_i, edgecolor = 'k'), 
+            if len(df[col].unique())<10:
+                df_rel = df.groupby(y_series.name)[col].value_counts(normalize=True).rename('percent').reset_index()
+                sns.barplot(data = df_rel, x = y_series.name, y = 'percent', hue = col,ax = axs_i, edgecolor = 'k')
+            else:
+                sns.boxplot(data = df, x = y_series.name, y = col,ax = axs_i), 
+                axs_i.set_title('Distribution for {}'.format(col))
+        elif df[col].dtypes == object:
+            df_rel = df.groupby(y_series.name)[col].value_counts(normalize=True).rename('percent').reset_index()
+            sns.barplot(data = df_rel, x = y_series.name, y = 'percent', hue = col, ax = axs_i, edgecolor = 'k')
         else:
-            sns.boxplot(data = df, x = y.name, y = col,ax = axs_i), 
+            sns.boxplot(data = df, x = y_series.name, y = col,ax = axs_i), 
             axs_i.set_title('Distribution for {}'.format(col))
         axs_i.set_title('Distribution for {}'.format(col))
     plt.tight_layout()
-    
+
     
 def check_quasi_constant_features(df, col_list = None):
     '''
