@@ -249,7 +249,7 @@ def select_best_threshold_p_r(X, y_true, model, plot = True):
         plt.ylabel('Recall')
     return f1, best_thresh, prec, rec
     
-def confusion_matrix_class_report(y_true, y_pred):
+def confusion_matrix_class_report(y_true, y_pred, figsize = (10, 10), rotation = 0, normalize = 'true'):
     '''
     A function that outputs the classification report and a plot of the normalized confusion matrix.
     
@@ -257,14 +257,25 @@ def confusion_matrix_class_report(y_true, y_pred):
     
     y_pred: A Series or numpy array of the predicted labels.
     
+    figsize: A tuple of integer values for the figsize of the confusion matrix.
+    
+    rotation: An integer of the degrees of rotation of the labels on each axis.
+    
+    normalize: {'true', 'pred', 'all', None}, default is none.
+    Normalizes confusion matrix over the true (rows), 
+    predicted (columns) conditions or all the population. 
+    If None, confusion matrix will not be normalized.
+    
     returns: A heatmap for the confusion matrix.
     '''
     print(classification_report(y_true, y_pred))
-    cm=confusion_matrix(y_true, y_pred, labels = y_true.unique(), normalize='true')
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-    disp.plot(xticks_rotation='horizontal',cmap='Purples')
+    fig, axs = plt.subplots(1, figsize = figsize)
+    cm=confusion_matrix(y_true, y_pred, labels = y_true.unique(), normalize = normalize)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm,display_labels=y_true.unique())
+    disp.plot(xticks_rotation='vertical',cmap='Purples', ax = axs)
+    axs.tick_params(rotation = rotation)
     
-def plot_feature_importance(model):
+def plot_feature_importance(model, top_features = 30, figsize = (14, 8)):
     '''
     A function that plots the feature importance for the model and returns a series of feature importance values.
     
@@ -273,8 +284,16 @@ def plot_feature_importance(model):
     returns: A Series of feature importance values with the features as the indices.
     '''
     if isinstance(model, (LogisticRegression, Ridge)):
-        feature_imp = model.coef_[0]
-        features = model.feature_names_in_
+        feat_imp_df = pd.DataFrame(np.abs(model.coef_).transpose(), 
+                                   columns = model.classes_, 
+                                   index = model.feature_names_in_)
+        for col in feat_imp_df.columns:
+            plt.figure(figsize = figsize)
+            feat_imp_df[col].sort_values(ascending = False).head(top_features).plot(kind = 'bar')
+            plt.title(f'Feature Importance for {col}')
+            plt.show()
+        return feat_imp_df
+        
     elif isinstance(model, (RandomForestClassifier, RandomForestRegressor)):
         feature_imp = model.feature_importances_
         features = model.feature_names_in_
@@ -282,7 +301,7 @@ def plot_feature_importance(model):
         feature_imp = model.feature_importances_
         features = model.feature_name_
     feat_imp_series = pd.Series(np.abs(feature_imp), index = features).sort_values(ascending = False)
-    plt.figure(figsize = (14, 8))
+    plt.figure(figsize = figsize)
     feat_imp_series.head(20).plot(kind = 'bar', edgecolor = 'k')
     plt.xlabel('Feature')
     plt.ylabel('Relative Importance')
