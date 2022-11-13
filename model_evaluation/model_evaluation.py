@@ -16,6 +16,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import precision_recall_curve
 from sklearn.model_selection import cross_validate
 from sklearn.model_selection import learning_curve
+from sklearn.metrics import classification_report
 
 def cross_validate_model(model, X, y, scorer, k = 5, plot = True, verbose = True, std = False):
     '''
