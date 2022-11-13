@@ -20,14 +20,26 @@ def plot_col_distributions(df, col_list = None, num_graph_cols = 4, figsize = (2
     figsize: Tuple of integer dimensions for the size of the figure.
     
     '''
+    #Creating the column list
     if col_list is None:
         col_list = list(df.columns)
+        
+    #Determining the number of rows based on the number of columns.
     if len(col_list) % num_graph_cols == 0:
         num_rows = len(col_list) // num_graph_cols
     else:
         num_rows = (len(col_list) // num_graph_cols) + 1
+    
     fig, axs = plt.subplots(num_rows, num_graph_cols, figsize = figsize)
+    
     for idx, col in enumerate(col_list):
+        if num_graph_cols == 1:
+            axs_i = axs[idx]
+        elif num_rows == 1:
+            axs_i = axs[idx]
+        else: 
+            axs_i = axs[idx//num_graph_cols, idx%num_graph_cols] 
+        #Determining the type of graph, based on the data type.
         if df[col].dtypes == float:
             graph_type = 'histplot'
         elif df[col].dtypes == object:
@@ -37,13 +49,15 @@ def plot_col_distributions(df, col_list = None, num_graph_cols = 4, figsize = (2
                 graph_type = 'histplot'
             else:
                 graph_type = 'countplot'
-        axs_idx = (idx// num_graph_cols, idx % num_graph_cols)
+                
+        #Creating each subplot
         if graph_type == 'countplot':
-            sns.countplot(x = col, data =df, ax = axs[axs_idx], edgecolor = 'k')
+            sns.countplot(x = col, data =df, ax = axs_i, edgecolor = 'k')
         elif graph_type == 'histplot':
-            sns.histplot(x = col, data = df, ax = axs[axs_idx], edgecolor = 'k')
-        axs[axs_idx].set_xlabel(col)
-        axs[axs_idx].set_ylabel('Frequency')
+            sns.histplot(x = col, data = df, ax =axs_i, edgecolor = 'k')
+        axs_i.set_xlabel(col)
+        axs_i.set_ylabel('Frequency')
+        axs_i.tick_params(rotation=rotation)
     plt.tight_layout()
     plt.show()
     
