@@ -257,7 +257,7 @@ def confusion_matrix_class_report(y_true, y_pred, figsize = (10, 10), rotation =
     
     y_pred: A Series or numpy array of the predicted labels.
     
-    figsize: A tuple of integer values for the figsize of the confusion matrix.
+    figsize: A tuple of integer values for the figsize of the confusion matrix. Default is (10, 10)
     
     rotation: An integer of the degrees of rotation of the labels on each axis.
     
@@ -280,6 +280,10 @@ def plot_feature_importance(model, top_features = 30, figsize = (14, 8)):
     A function that plots the feature importance for the model and returns a series of feature importance values.
     
     model: A pre-trained model. Options are LogisticRegression, Ridge, RandomForest, LightGBM.
+    
+    top_features: A positive integer that gives the number of the top features to plot in the graph. Default is 30.
+    
+    figsize: A tuple of integer values for the figsize of the confusion matrix. Default is (14, 8)
     
     returns: A Series of feature importance values with the features as the indices.
     '''
