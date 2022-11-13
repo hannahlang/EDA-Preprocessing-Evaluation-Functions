@@ -103,7 +103,7 @@ When set to True, the model plots the precision-recall curve.
 A plot of the precision-recall curve, the f1 score, the best threshold based on precision/recall, and a tuple of the best precision/recall.
  
     
-## confusion_matrix_class_report <i>(y_true, y_pred):</i>
+## confusion_matrix_class_report <i>(y_true, y_pred, figsize = (10, 10), rotation = 0, normalize = 'true'):</i>
 
 A function that outputs the classification report and a plot of the normalized confusion matrix.
     
@@ -114,18 +114,37 @@ An array or Series of the true labels
 **y_pred:** ***Pandas Series, numpy array (n_samples,)*** 
 
 An array or Series of the predicted labels.
+
+**figsize:** ***tuple (n,m), default = (10, 10)***
+
+Tuple of integer dimensions for the size of the figure.
+
+**rotation:** ***int, default = 0***
+
+Integer value of the degree rotation for the tick labels in the graph.
+
+**normalize:** ***{‘true’, ‘pred’, ‘all’}, default=None***
+Normalizes confusion matrix over the true (rows), predicted (columns) conditions or all the population. If None, confusion matrix will not be normalized.
     
 **Returns:** 
 
 A heatmap for the confusion matrix.
    
     
-## plot_feature_importance <i>(model):</i>
+## plot_feature_importance <i>(model, top_features = 30, figsize = (14, 8)):</i>
 
 A function that plots the feature importance for the model and returns a series of feature importance values.
     
 **model:** ***A pre-trained model:***  {LogisticRegression, Ridge, RandomForestRegressor, RandomForestClassifier, LGBMRegressor, LGBMClassifier}
-    
+
+**top_features:** <i>int $\in$ (1, num_features), default = 30 </i>
+
+A positive integer that gives the number of the top features to plot in the graph. 
+
+**figsize:** ***tuple (n,m), default = (14, 8)***
+
+A tuple of integer values for the figsize of the confusion matrix.
+
 **Returns:** 
 
 A Series of feature importance values with the features as the indices.
