@@ -6,7 +6,7 @@ from scipy import stats as st
 from scipy.stats import chi2_contingency
 from scipy.stats import f_oneway
 
-def plot_col_distributions(df, col_list = None, num_graph_cols = 4, figsize = (20, 20)):
+def plot_col_distributions(df, col_list = None, num_graph_cols = 4, figsize = (20, 20), rotation = 0):
     '''
     This function takes the DataFrame of features and plots the distribution of the features in subplots. 
     If the column is an integer or object column it plots a bar graph. If the column is a float column, it plots a histogram.
@@ -18,6 +18,8 @@ def plot_col_distributions(df, col_list = None, num_graph_cols = 4, figsize = (2
     num_graph_cols: The number of columns in the subplot. Must be a positive integer value.
     
     figsize: Tuple of integer dimensions for the size of the figure.
+    
+    rotation: Integer value of the rotation of the tick labels on the graph. Default is 0.
     
     '''
     #Creating the column list
@@ -120,6 +122,8 @@ def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 3
     num_graph_cols: The number of columns in the subplot. Must be a positive integer value. Default is set to 4.
     
     figsize: Tuple of integer dimensions for the size of the figure.
+    
+    rotation: Integer value of the rotation of the tick labels on the graph. Default is 0.
     
     '''
     if col_list is None:
