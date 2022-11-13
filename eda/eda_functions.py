@@ -142,7 +142,10 @@ def plot_col_vs_cat_target(X, y, col_list = None, num_cols = 4, figsize = (20, 3
     #Plotting each column
     for i, col in enumerate(col_list):
         if num_cols == 1:
-            axs_i = axs[i]
+            if num_rows == 1:
+                axs_i = axs
+            else:        
+                axs_i = axs[i]
         elif num_rows == 1:
             axs_i = axs[i%num_cols]
         else: 
