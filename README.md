@@ -44,7 +44,7 @@ A file explaining in detail the class in ClassifierErrorAnalysis.py.
 
 ### ClassifierErrorAnalysis.py
 #### 1. ClassifierErrorAnalysis()
-A class that performs error analysis for classification models in various forms. Methods are described below.
+A class that performs error analysis for classification models in various forms. 
 
 ## feature_processing
 ### NumericalScaler.md
