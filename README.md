@@ -38,6 +38,14 @@ A function that takes the DataFrame of features and outputs an lower triangle co
 #### 7. association_features_binary_target
 A function that returns the names of the features that have a direct association with the target, and the corresponding p-values of the chi-squared tests and t-tests.
 
+## error_analysis
+### ClassifierErrorAnalysis.md
+A file explaining in detail the class in ClassifierErrorAnalysis.py.
+
+### ClassifierErrorAnalysis.py
+#### 1. ClassifierErrorAnalysis()
+A class that performs error analysis for classification models in various forms. Methods are described below.
+
 ## feature_processing
 ### NumericalScaler.md
 A file explaining in detail the NumericalScaler() class.
