@@ -65,7 +65,7 @@ class PredictConfidenceIntervals(BaseEstimator, TransformerMixin):
         predicted_label_prob = predicted_probabilities.max(axis = 1)
 
         #Saving the results of each of the n_bootstraps models.
-        boot_strapped_predictions = np.zeros((self.num_bootstraps, len(X), 3))
+        boot_strapped_predictions = np.zeros((self.num_bootstraps, len(X), len(self.main_model.classes_)))
         boot_max_class_predictions = np.zeros((self.num_bootstraps, len(X)))
         
         for i in range(self.num_bootstraps):
